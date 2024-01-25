@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    --right-color: orange;
+    --right-np-color:green;
+    --wrong-color:gray;
+}
+body {
+    margin: 0;
+    background-color: #eee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.title {
+    text-align: center;
+    padding: 20px;
+    margin: 0 0 50px;
+    background-color: white;
+    text-transform: uppercase;
+}
+
+.guess-game {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin: 20px auto;
+    align-items: flex-start;
+}
+
+
+/* start key Colors */
+.key-colors{
+
+}
+.key-colors .key-color{
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 10px;
+
+}
+.key-colors .key-color .key{
+    height: 20px;
+    width: 20px;
+    border-radius: 2px;
+}
+.key-colors .key-color .in-place{
+    background-color: var(--right-color);
+}
+.key-colors .key-color .not-in-place{
+    background-color: var(--right-np-color);
+}
+.key-colors .key-color .no {
+    background-color: var(--wrong-color);
+}
+.key-colors .key-color .key-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+/* end key Colors */
+
+
+
+
+
+
+
+
+
+/* start footer*/
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    width: 100%;
+    padding: 30px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+/* end footer*/
