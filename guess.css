@@ -25,7 +25,63 @@ body {
     width: 1000px;
     margin: 20px auto;
     align-items: flex-start;
+    padding: 0 20px;
 }
+
+/* start game area*/
+.guess-area{}
+.guess-area .inputs{}
+.guess-area .inputs > div {
+    margin-bottom:  20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.guess-area .inputs > div span {
+    font-size: 25px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #4b4b4b;
+}
+
+.guess-area .inputs  .disabled-inputs {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.guess-area .inputs input {
+    margin: 0 5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+    caret-color: gray;
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 3px;
+}
+.guess-area .inputs input:focus {
+    outline-color:#ccc ;
+    
+}
+.guess-area .inputs input.yes-in-place {
+    background-color: var(--right-color);
+    border:  var(--right-color);
+    color: white;
+}
+.guess-area .inputs input.not-in-place {
+    background-color: var(--right-np-color);
+    border: var(--right-np-color);
+    color: white;
+}
+.guess-area .inputs input.no {
+    background-color: var(--wrong-color);
+    border:  var(--wrong-color);
+    color: white;
+}
+
+/* start game area*/
 
 
 /* start key Colors */
