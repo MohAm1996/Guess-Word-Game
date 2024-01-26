@@ -14,7 +14,7 @@ let currentTry = 1;
 //Manage words
 let wordToguess = "";
 const words = ["banana", "purple", "guitar", "sunset", "rocket", "window", "travel", "jacket", "camera", "flower"];
-wordToguess= words[Math.floor(Math.random()*words.length)].toLowerCase();
+wordToguess = words[Math.floor(Math.random() * words.length)].toLowerCase();
 let messageArea = document.querySelector(".message")
 console.log(wordToguess)
 
@@ -61,7 +61,7 @@ function generateInpunts() {
                 if (nextInput < inputs.length) inputs[nextInput].focus()
             } else if (event.key === "ArrowLeft") {
                 const previousInput = currentIndex - 1
-                if(previousInput >=0) inputs[previousInput].focus()
+                if (previousInput >= 0) inputs[previousInput].focus()
             }
         })
     })
@@ -69,18 +69,18 @@ function generateInpunts() {
 
 //Game Logic 
 const guessButton = document.querySelector(".check");
-guessButton.addEventListener("click",handleGuesses)
+guessButton.addEventListener("click", handleGuesses)
 
-function handleGuesses(){
+function handleGuesses() {
     let successeGuess = true;
-    for (let i = 1; i <= numbersOfLetters;i++){
+    for (let i = 1; i <= numbersOfLetters; i++) {
         const inputField = document.querySelector(`#guess-${currentTry}-letter-${i}`);
-        const letter=inputField.value.toLowerCase();
-        const actualLetter = wordToguess[i-1];
+        const letter = inputField.value.toLowerCase();
+        const actualLetter = wordToguess[i - 1];
 
-        if(letter=== actualLetter){
+        if (letter === actualLetter) {
             inputField.classList.add("yes-in-place")
-        } else if (wordToguess.includes(letter)){
+        } else if (wordToguess.includes(letter)) {
             inputField.classList.add("not-in-place")
             successeGuess = false
         } else {
@@ -89,13 +89,36 @@ function handleGuesses(){
         }
     }
 
-    if(successeGuess){
-        messageArea.innerHTML =`You win the Word is <span>${wordToguess}</span>`
+    if (successeGuess) {
+        messageArea.innerHTML = `You win the Word is <span>${wordToguess}</span>`
         let allTries = document.querySelectorAll(".inputs > div");
-        allTries.forEach((tryDiv)=> tryDiv.classList.add("disabled-inputs"))
-        guessButton.disabled =true
-    }else {
-        console.log("You lose")
+        allTries.forEach((tryDiv) => tryDiv.classList.add("disabled-inputs"))
+        guessButton.disabled = true
+    } else {
+
+
+        if (currentTry < 6) {
+            let trydiv = document.querySelector(`.try-${currentTry}`)
+            let tryinputs = document.querySelectorAll(`.try-${currentTry} input`)
+            tryinputs.forEach((input) => input.disabled = true)
+            trydiv.classList.toggle("disabled-inputs");
+
+            //next try
+            currentTry++
+            let nextTryDiv = document.querySelector(`.try-${currentTry}`)
+            nextTryDiv.classList.remove("disabled-inputs");
+            let nextTryDivInputs = document.querySelectorAll(`.try-${currentTry} input`)
+            nextTryDivInputs.forEach((input) => input.disabled = false)
+            nextTryDiv.children[1].focus();
+
+        }
+        else {
+            messageArea.innerHTML = `You Lose the Word is <span>${wordToguess}</span>`
+            guessButton.disabled = true
+
+        }
+
+
     }
 }
 
