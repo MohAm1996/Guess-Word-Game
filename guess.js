@@ -10,6 +10,7 @@ document.querySelector("footer").innerHTML = `${gameName} &copy; 2024 MedAmeur. 
 let numbersOfTries = 6;
 let numbersOfLetters = 6;
 let currentTry = 1;
+let numberOfHints=2;
 
 //Manage words
 let wordToguess = "";
@@ -38,7 +39,6 @@ function generateInpunts() {
         }
 
     }
-    console.log(inputsContainer)
     inputsContainer.children[0].children[1].focus();
 
     //Disable All inputs except First one
@@ -94,6 +94,7 @@ function handleGuesses() {
         let allTries = document.querySelectorAll(".inputs > div");
         allTries.forEach((tryDiv) => tryDiv.classList.add("disabled-inputs"))
         guessButton.disabled = true
+        hintButton.disabled =true
     } else {
 
 
@@ -115,11 +116,43 @@ function handleGuesses() {
         else {
             messageArea.innerHTML = `You Lose the Word is <span>${wordToguess}</span>`
             guessButton.disabled = true
-
+            hintButton.disabled =true
         }
 
 
     }
+}
+
+const hintButton = document.querySelector(".hint");
+hintButton.addEventListener("click", HandleHint)
+document.querySelector(".hint span").innerHTML=`${numberOfHints} `;
+
+function HandleHint(){
+    
+    if(numberOfHints>0){
+        numberOfHints--
+        document.querySelector(".hint span").innerHTML=`${numberOfHints} `;
+
+    } if(numberOfHints===0) {
+        hintButton.disabled =true
+    }
+
+    const enableInputs = document.querySelectorAll("input:not([disabled])")
+
+    const emptyEnabledInputs= Array.from(enableInputs).filter((input)=> input.value==="")
+    console.log(emptyEnabledInputs)
+    if(emptyEnabledInputs.length > 0){
+        let randomHintIndex=Math.floor(Math.random() * emptyEnabledInputs.length);
+        console.log("randomHintIndex :"+randomHintIndex)
+        let randomHintInput = emptyEnabledInputs[randomHintIndex];
+        console.log(randomHintInput)
+
+        randomHintInput.value=wordToguess[randomHintInput.id.slice(-1)-1].toUpperCase()
+        randomHintInput.classList.add("yes-in-place")
+    }
+
+
+    
 }
 
 
