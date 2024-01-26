@@ -90,7 +90,10 @@ function handleGuesses() {
     }
 
     if (successeGuess) {
-        messageArea.innerHTML = `You win the Word is <span>${wordToguess}</span>`
+        if(numberOfHints === 2){
+            messageArea.innerHTML =  `<p>Congrats you didnt use hints</p>You win the Word is <span>${wordToguess}</span>`
+        }else {messageArea.innerHTML = `You win the Word is <span>${wordToguess}</span>`}
+        
         let allTries = document.querySelectorAll(".inputs > div");
         allTries.forEach((tryDiv) => tryDiv.classList.add("disabled-inputs"))
         guessButton.disabled = true
@@ -148,13 +151,28 @@ function HandleHint(){
         console.log(randomHintInput)
 
         randomHintInput.value=wordToguess[randomHintInput.id.slice(-1)-1].toUpperCase()
-        randomHintInput.classList.add("yes-in-place")
     }
 
 
     
 }
 
+function handleBackSpace(event){
+    if(event.key ==="Backspace"){
+        const inputs = document.querySelectorAll("input:not([disabled])")
+        const currentIndex = Array.from(inputs).indexOf(document.activeElement);
+        if(currentIndex > 0){
+            const currentInput = inputs[currentIndex];
+            const prevInput = inputs[currentIndex - 1];
+            currentInput.value ="";
+            prevInput.value ="";
+            prevInput.focus();
+
+        }
+    }
+}
+
+document.addEventListener("keydown",handleBackSpace)
 
 window.onload = function () {
     generateInpunts();
