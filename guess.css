@@ -81,6 +81,40 @@ body {
     color: white;
 }
 
+.guess-area .control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    gap: 10px;
+}
+.guess-area .control .check {
+    border: none;
+    font-size: 18px;
+    padding: 15px 20px;
+    border-radius: 6px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+}
+.guess-area .control .hint {
+    border: none;
+    font-size: 18px;
+    padding: 15px 20px;
+    border-radius: 6px;
+    background-color: #009688;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    width: fit-content;
+}
+.guess-area .control  button:disabled {
+    background-color: black;
+    opacity: 0.4;
+    cursor: no-drop;
+}
 /* start game area*/
 
 

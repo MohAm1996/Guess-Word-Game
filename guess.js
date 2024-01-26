@@ -11,6 +11,12 @@ let numbersOfTries = 6;
 let numbersOfLetters = 6;
 let currentTry = 1;
 
+//Manage words
+let wordToguess = "";
+const words = ["banana", "purple", "guitar", "sunset", "rocket", "window", "travel", "jacket", "camera", "flower"];
+wordToguess= words[Math.floor(Math.random()*words.length)].toLowerCase();
+console.log(wordToguess)
+
 function generateInpunts() {
     const inputsContainer = document.querySelector(".inputs");
 
@@ -25,12 +31,13 @@ function generateInpunts() {
         for (let j = 1; j <= numbersOfLetters; j++) {
             const input = document.createElement("input");
             input.type = "text";
-            input.id = `guess-${i}-lettre-${j}`;
+            input.id = `guess-${i}-letter-${j}`;
             input.setAttribute("maxLength", "1");
             tryDiv.appendChild(input)
         }
 
     }
+    console.log(inputsContainer)
     inputsContainer.children[0].children[1].focus();
 
     //Disable All inputs except First one
@@ -57,10 +64,32 @@ function generateInpunts() {
             }
         })
     })
-
-
-
 }
+
+//Game Logic 
+const guessButton = document.querySelector(".check");
+guessButton.addEventListener("click",handleGuesses)
+
+function handleGuesses(){
+    let successeGuess = true;
+    for (let i = 1; i <= numbersOfLetters;i++){
+        const inputField = document.querySelector(`#guess-${currentTry}-letter-${i}`);
+        const letter=inputField.value.toLowerCase();
+        const actualLetter = wordToguess[i-1];
+
+        if(letter=== actualLetter){
+            inputField.classList.add("yes-in-place")
+        } else if (wordToguess.includes(letter)){
+            inputField.classList.add("not-in-place")
+            successeGuess = false
+        } else {
+            inputField.classList.add("no")
+            successeGuess = false
+        }
+    }
+}
+
+
 window.onload = function () {
     generateInpunts();
 }
