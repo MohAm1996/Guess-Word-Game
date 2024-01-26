@@ -115,6 +115,23 @@ body {
     opacity: 0.4;
     cursor: no-drop;
 }
+
+.message {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+.message span {
+    font-weight: bold;
+    display: block;
+    font-size: 35px;
+    color: red;
+    text-transform: capitalize;
+    margin-top: 10px;
+}
+.message p {
+    margin-top: 15px;
+}
 /* start game area*/
 
 
@@ -166,8 +183,6 @@ footer {
     color: white;
     width: 100%;
     padding: 30px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+
 }
 /* end footer*/

@@ -15,6 +15,7 @@ let currentTry = 1;
 let wordToguess = "";
 const words = ["banana", "purple", "guitar", "sunset", "rocket", "window", "travel", "jacket", "camera", "flower"];
 wordToguess= words[Math.floor(Math.random()*words.length)].toLowerCase();
+let messageArea = document.querySelector(".message")
 console.log(wordToguess)
 
 function generateInpunts() {
@@ -86,6 +87,15 @@ function handleGuesses(){
             inputField.classList.add("no")
             successeGuess = false
         }
+    }
+
+    if(successeGuess){
+        messageArea.innerHTML =`You win the Word is <span>${wordToguess}</span>`
+        let allTries = document.querySelectorAll(".inputs > div");
+        allTries.forEach((tryDiv)=> tryDiv.classList.add("disabled-inputs"))
+        guessButton.disabled =true
+    }else {
+        console.log("You lose")
     }
 }
 
